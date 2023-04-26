@@ -10,22 +10,9 @@
 <body>
 	<div class="main">
 		<div class="page">
-			<div class="header">
-				<div class="header-img">
-					<img src="images/header.jpg" alt="" width="800">
-				</div>
-				<div class="topmenu">
-					<ul>
-						<li><a href="index.html">Trang chủ</a></li>
-						<li><a href="tintuc.html">Tin tức</a></li>
-					</ul>
-				</div>
-			</div>
+			<div class="header"></div>
 			<div class="content">
-				<div class="leftpanel">
-					<h2>Danh mục tin</h2>
-					<ul id="list-cat"></ul>
-				</div>
+				<div class="leftpanel"></div>
 				<div class="rightpanel">
 					<div class="rightbody">
 						<h1 class="title">Tin tức</h1>
@@ -43,14 +30,19 @@
 				</div>
 				<div class="clr"></div>
 			</div>
-			<div class="footer">
-				<p>Trung tâm đào tạo Lập trình viên VinaEnter EDU</p>
-			</div>
+			<div class="footer"></div>
 		</div>
 	</div>
 	<script src="lib/jquery-3.6.3.min.js"></script>
 	<script src="lib/axios.min.js"></script>
 	<script src="js/tintuc.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(".header").load("./inc/header.html");
+			$(".leftpanel").load("./inc/leftpanel.html");
+			$(".footer").load("./inc/footer.html");
+		});
+	</script>
 </body>
 
 </html>

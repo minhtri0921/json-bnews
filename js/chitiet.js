@@ -13,32 +13,18 @@ async function getData() {
 
     const detailElement = $("#detail");
     try {
-        var newsById = await axios.get(`http://localhost:3000/anews/${dId}`);
+        var newsById = await axios.get(`http://localhost:3000/bnews/${dId}`);
 
         newsById = newsById.data;
 
-        detailElement.html(`
-            <h3>${newsById.description}</h3>
-            <div class="main-content">
-                <p>${newsById.detail}</p>
+        detailElement.replaceWith(`
+            <h1 class="title">${newsById.description}</h1>
+            <div class="items-new">
+                <div class="new-detail">
+                    <p>${newsById.detail}</p>
+                </div>
             </div>
         `);
-
-        const listCatElement = $("#list-cat");
-
-        var listCat = await axios.get('http://localhost:3000/acategories');
-
-        listCat = listCat.data;
-
-        listCat.forEach(function (news) {
-            const liElement = $('<li></li>');
-            liElement.html(`
-                <a href="danhmuc.html?cid=${news.id}">${news.name}</a>
-            `);
-
-            listCatElement.append(liElement);
-
-        })
     } catch (err) {
         console.log('Lỗi ' + err);
         detailElement.append(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!<p/>`);

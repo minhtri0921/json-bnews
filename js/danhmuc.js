@@ -12,7 +12,7 @@ var cId = getParameterByName('cid');
 async function getData() {
     const ulElement = $("#list-news-by-cat");
     try {
-        var listNews = await axios.get('http://localhost:3000/anews');
+        var listNews = await axios.get('http://localhost:3000/bnews');
         listNews = listNews.data;
 
         var listNewsByCat = listNews.filter(function (news) {
@@ -26,6 +26,7 @@ async function getData() {
                 <a href="chitiet.html?did=${news.id}" title="">${news.description}</a>
             </h2>
             <div class="item">
+                <a href="chitiet.html?did=${news.id}" title=""><img src=${news.image} alt=${news.image} /></a>
                 <p>${news.detail}</p>
                 <div class="clr"></div>
             </div>
@@ -35,29 +36,17 @@ async function getData() {
 
         })
 
-        const listCatElement = $("#list-cat");
-
-        var listCat = await axios.get('http://localhost:3000/acategories');
+        var listCat = await axios.get('http://localhost:3000/bcategories');
 
         listCat = listCat.data;
-
-        listCat.forEach(function (news) {
-            const liElement = $('<li></li>');
-            liElement.html(`
-                <a href="danhmuc.html?cid=${news.id}">${news.name}</a>
-            `);
-
-            listCatElement.append(liElement);
-
-        })
 
         var catName = listCat.find(function (cat) {
             return cat.id === cId;
         }).name;
 
-        var h3 = $('#cat-name');
+        var h1 = $('#cat-name');
 
-        h3.text('Tin tức :: ' + catName);
+        h1.text('Tin tức >> ' + catName);
     } catch (err) {
         console.log('Lỗi ' + err);
         ulElement.append(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!<p/>`);
